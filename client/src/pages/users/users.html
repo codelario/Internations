@@ -1,0 +1,20 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Users</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item ion-item *ngFor="let user of users">
+      <button (click)="userSelected(user)">
+        {{ user.name }}
+      </button>
+      <ion-icon name="trash" (click)="removeUser(user._id)" item-start></ion-icon>
+      <ion-icon name="contacts" (click)="openGroupsModal(user._id)" item-start></ion-icon>
+    </ion-item>
+  </ion-list>
+  <button ion-button (click)="add()">Add</button>
+</ion-content>
