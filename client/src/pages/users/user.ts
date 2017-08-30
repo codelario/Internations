@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewController } from 'ionic-angular'
+import { ViewController, AlertController } from 'ionic-angular'
 import { UsersService } from './users.service';
 import { User } from './user.interfase';
 
@@ -9,7 +9,7 @@ import { User } from './user.interfase';
   <ion-header>
     <ion-toolbar>
       <ion-title>
-        Description
+        User
       </ion-title>
       <ion-buttons start>
         <button ion-button (click)="dismiss()">
@@ -22,15 +22,16 @@ import { User } from './user.interfase';
   <ion-content>
     <ion-list>
         <ion-item>
-          <ion-label fixed>Name</ion-label>
+          <ion-label fixed>Name *</ion-label>
           <ion-input type="text" [(ngModel)]="user.name"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label fixed>Last Name</ion-label>
+          <ion-label fixed>Last Name *</ion-label>
           <ion-input type="text" [(ngModel)]="user.lastname"></ion-input>
         </ion-item>
         <ion-item>
         <button ion-button (click)="save()">Save</button>
+        <button ion-button (click)="closeModal()">Cancel</button>
       </ion-item>
     </ion-list>
   </ion-content>`,
@@ -38,7 +39,10 @@ import { User } from './user.interfase';
 export class UserComponent implements OnInit {
 
   public user: User;
-  constructor(private _usersService: UsersService, private _viewController: ViewController) {
+  constructor(
+    private _usersService: UsersService,
+    private _viewController: ViewController,
+    private _alertCtrl: AlertController) {
   }
 
   ngOnInit() {
@@ -48,8 +52,23 @@ export class UserComponent implements OnInit {
     }
   }
 
+  private validateFields = () => (this.user.name && this.user.lastname);
+
   public save = () => {
+    if (!this.validateFields()) {
+      let alert = this._alertCtrl.create({
+        title: 'Required fields',
+        subTitle: 'Required fields cannot be blank.',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+      return;
+    }
     this._usersService.save(this.user);
+    this.closeModal();
+  }
+
+  public closeModal = () => {
     this._viewController.dismiss();
   }
 

@@ -36,7 +36,7 @@ export class UsersGroupsComponent implements OnInit {
   private _userId;
   constructor(private _usersGroupsService: UsersGroupsService,
     private _groupsService: GroupsService,
-    private viewCtrl: ViewController,
+    private _viewCtrl: ViewController,
     private _navParamas: NavParams) {
   }
 
@@ -84,7 +84,7 @@ export class UsersGroupsComponent implements OnInit {
   }
 
   public closeModal = () => {
-    this.viewCtrl.dismiss();
+    this._viewCtrl.dismiss();
   }
 
   private save = () => {

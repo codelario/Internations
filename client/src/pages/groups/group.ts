@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewController } from 'ionic-angular'
+import { ViewController, AlertController } from 'ionic-angular'
 import { GroupsService } from './groups.service';
 import { Group } from './group.interfase';
 
@@ -9,7 +9,7 @@ import { Group } from './group.interfase';
   <ion-header>
     <ion-toolbar>
       <ion-title>
-        Description
+        Group
       </ion-title>
       <ion-buttons start>
         <button ion-button (click)="dismiss()">
@@ -22,19 +22,23 @@ import { Group } from './group.interfase';
   <ion-content>
     <ion-list>
         <ion-item>
-          <ion-label fixed>Name</ion-label>
+          <ion-label fixed>Name *</ion-label>
           <ion-input type="text" [(ngModel)]="group.name"></ion-input>
         </ion-item>
         <ion-item>
         <button ion-button (click)="save()">Save</button>
+        <button ion-button (click)="closeModal()">Cancel</button>
       </ion-item>
     </ion-list>
   </ion-content>`,
 })
-export class GroupComponent implements OnInit{
+export class GroupComponent implements OnInit {
 
-  public group:Group;
-  constructor(private _groupsService: GroupsService, private _viewController: ViewController) {
+  public group: Group;
+  constructor(
+    private _groupsService: GroupsService,
+    private _viewController: ViewController,
+    private _alertCtrl: AlertController) {
   }
 
   ngOnInit() {
@@ -43,8 +47,23 @@ export class GroupComponent implements OnInit{
     }
   }
 
+  private validateFields = () => (this.group.name);
+
   public save = () => {
+    if (!this.validateFields()) {
+      let alert = this._alertCtrl.create({
+        title: 'Required fields',
+        subTitle: 'Required fields cannot be blank.',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+      return;
+    }
     this._groupsService.save(this.group);
+    this.closeModal();
+  }
+
+  public closeModal = () => {
     this._viewController.dismiss();
   }
 
