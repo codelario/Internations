@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 
 import { GroupsService } from '../groups/groups.service';
 import { UsersGroupsService } from './usersGroups.service';
@@ -23,6 +23,9 @@ import { UsersGroupsService } from './usersGroups.service';
     {{userGroup.name}}
     <ion-icon name="trash" (click)="removeGroup(userGroup.id)" item-start></ion-icon>
   </button>    
+  <ion-item>
+  <button ion-button (click)="closeModal()">Cancel</button>
+  </ion-item>
 </ion-list>
   </ion-content>`,
 })
@@ -33,6 +36,7 @@ export class UsersGroupsComponent implements OnInit {
   private _userId;
   constructor(private _usersGroupsService: UsersGroupsService,
     private _groupsService: GroupsService,
+    private viewCtrl: ViewController,
     private _navParamas: NavParams) {
   }
 
@@ -77,6 +81,10 @@ export class UsersGroupsComponent implements OnInit {
       return group.id != groupId
     });
     this.save();
+  }
+
+  public closeModal = () => {
+    this.viewCtrl.dismiss();
   }
 
   private save = () => {
