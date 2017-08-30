@@ -3,6 +3,7 @@ import { NavController, ModalController } from 'ionic-angular';
 import { UsersService } from './users.service';
 import { UserComponent } from './user';
 import { UsersGroupsComponent } from './usersGroups.component';
+import { UserPreviewComponent } from './user-preview.component'
 
 @Component({
   selector: 'page-users',
@@ -23,7 +24,7 @@ export class UsersPage implements OnInit {
   }
 
   public userSelected = (user) => {
-    let modal = this._modalCtrl.create(UserComponent);
+    let modal = this._modalCtrl.create(UserPreviewComponent, { user: user });
     modal.present();
   }
 

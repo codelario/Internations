@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
 import { UsersPage } from '../pages/users/users';
+import { UserPreviewComponent } from '../pages/users/user-preview.component';
 import { UserComponent } from '../pages/users/user';
 import { UsersService } from '../pages/users/users.service';
 import { UsersGroupsService } from '../pages/users/usersGroups.service';
@@ -27,6 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     GroupsPage,
     GroupComponent,
     UsersGroupsComponent,
+    UserPreviewComponent,
     TabsPage
   ],
   imports: [
@@ -43,6 +45,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     UserComponent,
     GroupComponent,
     UsersGroupsComponent,
+    UserPreviewComponent,
     TabsPage
   ],
   providers: [
