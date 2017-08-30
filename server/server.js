@@ -49,7 +49,11 @@ app.delete('/users/:_id', (req, res) => {
     Users.findOneAndRemove({
         _id: new ObjectID(_id)
     }).then((result) => {
-        res.send("Success");
+        UsersGroups.findOneAndRemove({
+            user: new ObjectID(_id)
+        }).then((result) => {
+            res.send("Success");
+        });
     });
 });
 
