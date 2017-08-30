@@ -10,8 +10,8 @@ export class UserPreviewComponent implements OnInit {
   public user;
   constructor(
     private viewCtrl: ViewController,
-    private _navParamas:NavParams
-  ){}
+    private _navParamas: NavParams
+  ) { }
 
   ngOnInit() {
     this.user = this._navParamas.get('user');
