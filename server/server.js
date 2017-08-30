@@ -1,4 +1,4 @@
-require('./config');
+let config = require('./config');
 
 const _ = require('lodash');
 const express = require('express');
@@ -20,15 +20,15 @@ app.use((req, res, next) => {
     next();
 });
 
-app.listen(3000, () => {
-    console.log('listening on 3000')
+app.listen(config.server.PORT, () => {
+    console.log('listening on ' + config.server.PORT);
 })
 
 app.get('/users', (req, res) => {
     Users.find().then((users) => {
         res.send({ users });
     }, (e) => {
-        res.status(400).send(e);
+        errorStatusResponse();
     });
 });
 
@@ -40,7 +40,7 @@ app.post('/users', (req, res) => {
     user.save().then((users) => {
         res.send({ users });
     }, (e) => {
-        res.status(400).send(e);
+        errorStatusResponse();
     });
 });
 
@@ -61,7 +61,7 @@ app.get('/groups', (req, res) => {
     Groups.find().then((groups) => {
         res.send({ groups });
     }, (e) => {
-        res.status(400).send(e);
+        errorStatusResponse();
     });
 });
 
@@ -72,7 +72,7 @@ app.post('/groups', (req, res) => {
     group.save().then((group) => {
         res.send({ groups });
     }, (e) => {
-        res.status(400).send(e);
+        errorStatusResponse();
     });
 });
 
@@ -92,7 +92,7 @@ app.get('/usersgroups/:_id', (req, res) => {
     }).then((user) => {
         res.send({ user });
     }, (e) => {
-        res.status(400).send(e);
+        errorStatusResponse();
     });
 });
 
@@ -107,7 +107,7 @@ app.post('/usersgroups', (req, res) => {
         usersGroups.save().then((groups) => {
             res.send({ groups });
         }, (e) => {
-            res.status(400).send(e);
+            errorStatusResponse();
         });
     })
 });
