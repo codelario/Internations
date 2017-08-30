@@ -35,9 +35,9 @@ import { User } from './user.interfase';
     </ion-list>
   </ion-content>`,
 })
-export class UserComponent implements OnInit{
+export class UserComponent implements OnInit {
 
-  public user:User;
+  public user: User;
   constructor(private _usersService: UsersService, private _viewController: ViewController) {
   }
 

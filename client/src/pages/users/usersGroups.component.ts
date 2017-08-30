@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 
 import { GroupsService } from '../groups/groups.service';
 import { UsersGroupsService } from './usersGroups.service';
@@ -31,7 +31,7 @@ export class UsersGroupsComponent implements OnInit {
   public groups;
   public userGroups = [];
   private _userId;
-  constructor(private _viewController: ViewController, private _usersGroupsService: UsersGroupsService,
+  constructor(private _usersGroupsService: UsersGroupsService,
     private _groupsService: GroupsService,
     private _navParamas: NavParams) {
   }

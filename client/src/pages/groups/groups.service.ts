@@ -1,3 +1,4 @@
+import { config } from '../../config/dev.config';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -14,16 +15,16 @@ export class GroupsService {
   }
 
   public list = () => {
-    return this._http.get("http://127.0.0.1:3000/groups")
+    return this._http.get(config.apiEndpoint.groups)
       .map(response => response.json());
   }
 
   public save = (group) => {
-    this._http.post("http://127.0.0.1:3000/groups", JSON.stringify(group), { headers: this._headers })
+    this._http.post(config.apiEndpoint.groups, JSON.stringify(group), { headers: this._headers })
       .subscribe(response => response.json());
   }
 
   public remove = (id) => {
-    return this._http.delete("http://127.0.0.1:3000/groups/" + id, this._options);
+    return this._http.delete(config.apiEndpoint.groups + id, this._options);
   }
 }
