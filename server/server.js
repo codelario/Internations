@@ -78,9 +78,16 @@ app.post('/groups', (req, res) => {
 
 app.delete('/groups/:_id', (req, res) => {
     let _id = req.params._id;
+    let these = this;
     Groups.findOneAndRemove({
         _id: new ObjectID(_id)
     }).then((result) => {
+        UsersGroups.update (
+            {},
+            { "$pull": { "groups": { "id": _id } } },
+            { safe: true, multi: true },
+            (err) => {} 
+        );
         res.send("Success");
     });
 });
