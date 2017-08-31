@@ -4,9 +4,13 @@ Setup Guide
 
 # Prerequisite Applications
 - node 8.4.0
+- cordova 7.0.1 or higher
 - ionic 2.1.18
 - Git 
 - Mongodb v3.4.2 or higher
+
+## Cordova Setup
+    1. Download & Install https://cordova.apache.org/#getstarted
 
 ## Git Setup
     1. git clone https://github.com/codelario/Internations
