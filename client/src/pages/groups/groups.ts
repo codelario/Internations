@@ -24,11 +24,6 @@ export class GroupsPage implements OnInit {
     console.log('ionViewDidLoad Groups');
   }
 
-  public groupSelected = (group) => {
-    let modal = this._modalCtrl.create(GroupComponent);
-    modal.present();
-  }
-
   private getGroups = () => {
     this._groupsService.list().subscribe(data => {
       this.originalGroupsList = data.groups;

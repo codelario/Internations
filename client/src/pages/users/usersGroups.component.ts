@@ -24,7 +24,7 @@ import { UsersGroupsService } from './usersGroups.service';
     <ion-icon name="trash" (click)="removeGroup(userGroup.id)" item-start></ion-icon>
   </button>    
   <ion-item>
-  <button ion-button (click)="closeModal()">Cancel</button>
+  <button ion-button (click)="closeModal()">Ok</button>
   </ion-item>
 </ion-list>
   </ion-content>`,

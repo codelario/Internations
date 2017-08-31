@@ -82,11 +82,11 @@ app.delete('/groups/:_id', (req, res) => {
     Groups.findOneAndRemove({
         _id: new ObjectID(_id)
     }).then((result) => {
-        UsersGroups.update (
+        UsersGroups.update(
             {},
             { "$pull": { "groups": { "id": _id } } },
             { safe: true, multi: true },
-            (err) => {} 
+            (err) => { }
         );
         res.send("Success");
     });
